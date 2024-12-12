@@ -1,0 +1,73 @@
+@startuml
+
+class Pelota {
+    -float radio
+    -float x, y
+    -sf::CircleShape forma
+    +Pelota(float radio, float x, float y)
+    +void mover()
+    +void reboteVertical()
+    +void reboteHorizontal()
+    +void resetearPosicion(float x, float y)
+    +sf::CircleShape obtenerForma()
+}
+
+class Raqueta {
+    -float ancho, alto
+    -float x, y
+    -float velocidad
+    -sf::RectangleShape forma
+    +Raqueta(float ancho, float alto, float x, float y, sf::Color color)
+    +void mover(float dx, float dy)
+    +sf::RectangleShape obtenerForma()
+    +float obtenerVelocidad()
+}
+
+class Puntaje {
+    -int puntaje1, puntaje2
+    +Puntaje()
+    +void actualizarPuntaje(int puntaje1, int puntaje2)
+    +void dibujar(sf::RenderWindow &ventana)
+}
+
+class GestorDeSonidos {
+    +void reproducirSonido(string archivo)
+}
+
+class GestorDeImagenes {
+    +sf::Texture cargarImagen(string archivo)
+}
+
+class sf::RenderWindow {
+    +void limpiar()
+    +void dibujar(sf::Drawable &drawable)
+    +void mostrar()
+    +void cerrar()
+    +bool estaAbierta()
+}
+
+class sf::Music {
+    +void reproducir()
+    +void establecerBucle(bool bucle)
+    +void establecerVolumen(float volumen)
+    +bool abrirDesdeArchivo(string archivo)
+}
+
+class sf::RectangleShape {
+    +void establecerPosicion(float x, float y)
+    +void establecerEscala(float escalaX, float escalaY)
+    +sf::FloatRect obtenerLimitesLocal()
+}
+
+class sf::CircleShape {
+    +void establecerPosicion(float x, float y)
+    +sf::FloatRect obtenerLimitesGlobales()
+}
+
+Pelota --> Raqueta : interactúa con
+Pelota --> Puntaje : interactúa con
+GestorDeSonidos --> Pelota : reproduce sonido en evento
+Puntaje --> sf::RenderWindow : dibuja el puntaje
+sf::Music --> sf::RenderWindow : reproduce música de fondo
+
+@enduml

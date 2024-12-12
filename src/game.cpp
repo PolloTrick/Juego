@@ -20,7 +20,7 @@ int main()
         return -1;
     }
     backgroundMusic.setLoop(true);
-    backgroundMusic.setVolume(50.f);
+    backgroundMusic.setVolume(5.f);
     backgroundMusic.play();
 
     // Inicialización de sonidos
@@ -132,7 +132,7 @@ int main()
             }
 
             window.display();
-            sf::sleep(sf::seconds(2));
+            sf::sleep(sf::seconds(5));
             break;
         }
 
